@@ -21,11 +21,23 @@ if (max(c(364, 365, 366, 367, 368, 369, 370, 371, 372, 373)) <= nrow(Statewise_G
 }
 
 
-
 # View the updated dataset
 View(Statewise_General_Index_Upto_Feb24)
-
 summary(Statewise_General_Index_Upto_Feb24)
 glimpse(Statewise_General_Index_Upto_Feb24)
+
+
+# For Interpolating NA values 
+install.packages("zoo")
+library(zoo)
+Statewise_General_Index_Upto_Feb24$West.Bengal <- na.approx(Statewise_General_Index_Upto_Feb24$West.Bengal)
+Statewise_General_Index_Upto_Feb24$Andhra.Pradesh <- na.approx(Statewise_General_Index_Upto_Feb24$Andhra.Pradesh)
+Statewise_General_Index_Upto_Feb24$Tripura <- na.approx(Statewise_General_Index_Upto_Feb24$Tripura)
+Statewise_General_Index_Upto_Feb24$Himachal.Pradesh <- na.approx(Statewise_General_Index_Upto_Feb24$Himachal.Pradesh)
+
+# Check for NA values
+any(is.na(Statewise_General_Index_Upto_Feb24))
+sum(is.na(Statewise_General_Index_Upto_Feb24))
+colSums(is.na(Statewise_General_Index_Upto_Feb24))
 
 #rm(Statewise_General_Index_Upto_Feb24)

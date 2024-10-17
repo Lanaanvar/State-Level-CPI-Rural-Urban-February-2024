@@ -19,6 +19,7 @@ create_plot <- function(sector_name) {
   ggplot(sector_long, aes(x = state, y = Year, color = mean_value)) + 
     geom_point() +
     scale_color_gradient(low = "purple", high = "yellow") +
+    scale_y_continuous(breaks = seq(min(sector_long$Year), max(sector_long$Year), by = 1))+
     labs(title = paste("Scatterplot for", sector_name, "Sector"),
          x = "State", y = "Year", color = "Mean Value") + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1))

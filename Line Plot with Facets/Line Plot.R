@@ -16,12 +16,13 @@ create_plot <- function(sector_name) {
   sector_long <- sector_data_means %>%
     pivot_longer(cols = Andhra.Pradesh:Puducherry, names_to = "state", values_to = "mean_value")
   
-  ggplot(sector_long, aes(x = state, y = Year, color = mean_value)) + 
-    geom_point() +
-    scale_color_gradient(low = "purple", high = "yellow") +
-    labs(title = paste("Scatterplot for", sector_name, "Sector"),
-         x = "State", y = "Year", color = "Mean Value") + 
-    theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  ggplot(sector_long, aes(x = Year, y = mean_value, color = state)) +
+    geom_line() +
+    facet_wrap(~ state, scales = "free_y") +
+    labs(title = paste("Trends over Time for", sector_name, "Sector"),
+         x = "Year", y = "Mean Value") +
+    theme_minimal()
+  
 }
 
 
